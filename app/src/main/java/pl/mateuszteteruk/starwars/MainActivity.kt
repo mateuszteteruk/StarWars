@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import dagger.hilt.android.AndroidEntryPoint
 import pl.mateuszteteruk.starwars.movie.Movie
 import pl.mateuszteteruk.starwars.movie.Movies
 import pl.mateuszteteruk.starwars.ui.theme.StarWarsTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
