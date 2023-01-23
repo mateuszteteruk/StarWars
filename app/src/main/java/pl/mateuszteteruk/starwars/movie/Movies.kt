@@ -1,5 +1,6 @@
 package pl.mateuszteteruk.starwars.movie
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,9 +14,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+
+@Destination(start = true)
+@Composable
+fun Movies() {
+    val movies = listOf(
+        Movie(name = "A New Hope"),
+        Movie(name = "The Empire Strikes Back"),
+        Movie(name = "Return of the Jedi"),
+        Movie(name = "The Phantom Menace"),
+        Movie(name = "Attack of the Clones"),
+        Movie(name = "Revenge of the Sith"),
+    )
+    Movies(
+        movies = movies,
+        onMovieClick = {
+            Log.d("TAG", "Movie click:$it")
+        }
+    )
+}
 
 @Composable
-fun Movies(
+private fun Movies(
     movies: List<Movie>,
     onMovieClick: (Movie) -> Unit,
 ) {
@@ -37,7 +58,7 @@ fun Movies(
 }
 
 @Composable
-fun MovieItem(
+private fun MovieItem(
     movie: Movie,
     onMovieClick: (Movie) -> Unit,
 ) {

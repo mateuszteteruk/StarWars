@@ -4,6 +4,7 @@ plugins {
     id 'com.apollographql.apollo3' version("3.7.3")
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'com.google.devtools.ksp' version '1.7.20-1.0.8'
 }
 
 android {
@@ -47,6 +48,14 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    applicationVariants.all { variant ->
+        kotlin.sourceSets {
+            getByName(variant.name) {
+                kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -64,6 +73,9 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+    implementation 'io.github.raamcosta.compose-destinations:core:1.7.32-beta'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.7.32-beta'
 
 
     implementation "com.google.dagger:hilt-android:2.42"
