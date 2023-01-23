@@ -15,10 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import pl.mateuszteteruk.starwars.movie.destinations.MovieDetailsDestination
 
 @Destination(start = true)
 @Composable
-fun Movies() {
+fun Movies(
+    navigator: DestinationsNavigator,
+) {
     val movies = listOf(
         Movie(name = "A New Hope"),
         Movie(name = "The Empire Strikes Back"),
@@ -31,6 +35,7 @@ fun Movies() {
         movies = movies,
         onMovieClick = {
             Log.d("TAG", "Movie click:$it")
+            navigator.navigate(MovieDetailsDestination(movie = it.name))
         }
     )
 }
