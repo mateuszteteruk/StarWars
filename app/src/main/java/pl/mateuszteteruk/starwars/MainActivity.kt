@@ -1,15 +1,11 @@
 package pl.mateuszteteruk.starwars
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import pl.mateuszteteruk.starwars.movie.Movie
+import pl.mateuszteteruk.starwars.movie.Movies
 import pl.mateuszteteruk.starwars.ui.theme.StarWarsTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,24 +14,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             StarWarsTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                val movies = listOf(
+                    Movie(name = "A New Hope"),
+                    Movie(name = "The Empire Strikes Back"),
+                    Movie(name = "Return of the Jedi"),
+                    Movie(name = "The Phantom Menace"),
+                    Movie(name = "Attack of the Clones"),
+                    Movie(name = "Revenge of the Sith"),
+                )
+                Movies(
+                    movies = movies,
+                    onMovieClick = {
+                        Log.d("TAG", "Movie click:$it")
+                    }
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    StarWarsTheme {
-        Greeting("Android")
     }
 }
