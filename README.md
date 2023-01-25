@@ -1,5 +1,5 @@
 # StarWars
-StarWars sample app presenting usage of some of newest Android technologies.
+StarWars sample app which is an open-source playground for some of the newest Android technologies.
 
 ## Libraries
 - Jetpack Compose
